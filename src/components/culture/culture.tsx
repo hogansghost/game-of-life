@@ -24,9 +24,12 @@ export const Culture: FunctionComponent = (): JSX.Element => {
   });
 
   const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [Duration, setIntervalDuration] = useState<number>(100);
+  const [intervalDuration, setIntervalDuration] = useState<number>(100);
 
   const cultureRef = useRef<HTMLDivElement>(null);
+  const isRunningRef = useRef(isRunning);
+  isRunningRef.current = isRunning;
+  
 
 
   const handleCellClick = (rowIndex: number, colIndex: number) => () => {
@@ -40,7 +43,40 @@ export const Culture: FunctionComponent = (): JSX.Element => {
       setBoard(newGrid);
   };
 
+  const handleRunButtonClick = () => {
+    setIsRunning(!isRunning);
+    runSimulation();
+  }
+  
+  const runSimulation = useCallback(() => {
+    if (isRunningRef.current) {
+      return;
+    }
+
+    setBoard((grid) => {
+      return produce(grid, (newGrid) => {
+        for (let y = 0; y < rowCount; y++) {
+          for (let x = 0; x < colCount; x++) {
+            const neighbourArray = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
+            let currentNeighbours = 0;
+
+            for (let j = 0; j < rowCount; j++) {    
+              debugger;        
+              // if (newGrid[neighbourArray[j][0]] === 1) {
+              //   currentNeighbours += 1;
+              // }
+            }
+          }
+        }
+      })
+    })
+
+    setTimeout(runSimulation, intervalDuration)
+  }, []);
+
   return (
+    <>
+    <button onClick={handleRunButtonClick}>Christ alive</button>
     <Styled.Culture
       colCount={colCount}
       rowCount={rowCount}
@@ -57,6 +93,7 @@ export const Culture: FunctionComponent = (): JSX.Element => {
         )})
       ))}
     </Styled.Culture>
+    </>
   );
 };
 
