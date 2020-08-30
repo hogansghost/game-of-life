@@ -1,34 +1,39 @@
 import * as React from 'react';
-import Culture from 'components/culture/culture';
+import Game from 'components/game/game';
+import ContentWidth from 'components/ui/content-width/content-width';
+import Title from 'components/ui/title/title';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     font-size: 12px;
   }
-`;
 
-const Title = styled.h1`
-  font-family: sans-serif;
-  text-align: center;
-  color: #333333;
+  h1, h2, h3, h4, h5, h6, p, ul, ol {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export function App() {
   return (
     <>
       <GlobalStyle />
-      <Title>Culture</Title>
-      <Culture>
-      </Culture>
+
+      <ContentWidth>
+        <Title>Culture</Title>
+        
+        <Game />
+      </ContentWidth>
     </>
   );
 }
