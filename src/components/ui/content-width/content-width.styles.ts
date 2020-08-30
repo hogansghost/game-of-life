@@ -5,5 +5,7 @@ export const ContentWidth = styled.div`
     max-width: 100%;
     margin-right: auto;
     margin-left: auto;
+    padding-right: 20px;
+    padding-left: 20px;
     text-align: center;
 `;
