@@ -5,11 +5,12 @@ interface CellProps {
 };
 
 export const Cell = styled.div<CellProps>`
-    color: white;
+    color: rgba(255,255,255,0.5);
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 0.5em;
     
     ${({ alive }) => `
         background: ${alive ? 'orange' : 'black'};

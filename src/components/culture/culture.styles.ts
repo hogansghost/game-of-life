@@ -7,11 +7,11 @@ export interface CultureMainProps {
 
 export const Culture = styled.div<CultureMainProps>`
     position: relative;
-    border: 1px solid black;
     width: 80vh;
     height: 70vh;
     display: grid;
     grid-gap: 1px;
+    background-color: rgba(0,0,0,0.8);
 
     ${(props) => `
         grid-template-columns: repeat(${props.colCount}, minmax(0, 1fr));

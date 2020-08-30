@@ -1,8 +1,5 @@
 import React, { FunctionComponent, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { produce } from 'immer';
-import Cell from 'components/cell/cell';
-
-import * as Styled from './culture.styles';
 
 export interface CellCoords {
   x: number,
@@ -96,33 +93,25 @@ export const Culture: FunctionComponent = (): JSX.Element => {
 
     for (let i = 0; i < rowCount; i++) {
       gridRows.push(
-        Array.from(Array(colCount), () => (Math.random() > 0.74 ? 1 : 0))
+        Array.from(Array(colCount), () => (Math.random() > 0.7 ? 1 : 0))
       );
     }
 
     setGrid(gridRows);
   }
 
+//   <Styled.Culture
+//       colCount={colCount}
+//       rowCount={rowCount}
+//       onCellClick={handleCellClick}
+//   />
+
   return (
     <>
-    <button onClick={handleRunButtonClick}>Christ alive</button>
-    <button onClick={handleRandomButtonClick}>Randomise</button>
-    <h1>Simulation is {isRunning ? 'running' : 'not running'}</h1>
-    <Styled.Culture
-      colCount={colCount}
-      rowCount={rowCount}
-    >
-      { grid.map((row, rowIndex) => (
-        row.map((cell, colIndex) => {
-          return (
-          <Cell
-            key={`${rowIndex}=${colIndex}`}
-            alive={cell}
-            onClick={handleCellClick(rowIndex, colIndex)}
-          />
-        )})
-      ))}
-    </Styled.Culture>
+        <button onClick={handleRunButtonClick}>Christ alive</button>
+        <button onClick={handleRandomButtonClick}>Randomise</button>
+
+        <h1>Simulation is {isRunning ? 'running' : 'not running'}</h1>
     </>
   );
 };
