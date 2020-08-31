@@ -2,11 +2,12 @@ import React, { FunctionComponent, useState, useEffect, useRef, useCallback } fr
 import { produce } from 'immer';
 import Culture from 'components/culture/culture';
 import Button from 'components/ui/button/button';
+import Input from 'components/ui/input/input';
 
 import * as Styled from './game.styles';
 
-const colCount = 40;
-const rowCount = 40;
+const colCount = window.innerWidth <= 992 ? 20 : 40;
+const rowCount = window.innerWidth <= 992 ? 20 : 40;
 
 const createGrid = () => {
   const gridRows: Array<Array<number>> = [];
@@ -93,9 +94,8 @@ export const Game: FunctionComponent = (): JSX.Element => {
 
   const handleOnChangeIntervalInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const target = evt.target as HTMLInputElement;
-      if (target?.value) {
-        setIntervalDuration(+target.value);
-      }
+
+    setIntervalDuration(+target.value);
   };
 
   useEffect(() => {
@@ -112,27 +112,29 @@ export const Game: FunctionComponent = (): JSX.Element => {
 
   return (
     <>
-      <Styled.GameSection>
-        <Styled.GameControls>
-          <Styled.GameInterval>
-            <Styled.GameIntervalLabel>Update the tick speed of the game</Styled.GameIntervalLabel>
-            <Styled.GameIntervalInput disabled={!!isRunning} value={intervalDuration} onChange={handleOnChangeIntervalInput} />
-          </Styled.GameInterval>
+      <Styled.Game>
+        <Styled.GameSection>
+          <Culture
+            grid={grid}
+            colCount={colCount}
+            rowCount={rowCount}
+            onCellClick={handleCellClick}
+          />
+        </Styled.GameSection>
 
-          <Button onClick={handleRunButtonClick}>{isRunning ? 'Stop' : 'Start'} simulation</Button>
-          <Button onClick={handleRandomButtonClick}>Randomise</Button>
-          <Button onClick={handleClearButtonClick}>Clear</Button>
-        </Styled.GameControls>
-      </Styled.GameSection>
+        <Styled.GameSection>
+          <Styled.GameControls>
+            <Styled.GameInterval>
+              <Styled.GameIntervalLabel>Update the tick speed of the game</Styled.GameIntervalLabel>
+              <Input disabled={!!isRunning} value={intervalDuration} onChange={handleOnChangeIntervalInput} />
+            </Styled.GameInterval>
 
-      <Styled.GameSection>
-        <Culture
-          grid={grid}
-          colCount={colCount}
-          rowCount={rowCount}
-          onCellClick={handleCellClick}
-        />
-      </Styled.GameSection>
+            <Button onClick={handleRunButtonClick}>{isRunning ? 'Stop' : 'Start'} simulation</Button>
+            <Button onClick={handleRandomButtonClick}>Randomise</Button>
+            <Button onClick={handleClearButtonClick}>Clear</Button>
+          </Styled.GameControls>
+        </Styled.GameSection>
+      </Styled.Game>
     </>
   );
 };

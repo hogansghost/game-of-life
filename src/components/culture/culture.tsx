@@ -24,12 +24,13 @@ export const Culture: FunctionComponent<CultureProps> = ({
         { grid.map((row: Array<number | boolean>, rowIndex: number) => (
           row.map((cell: number | boolean, colIndex: number) => {
             return (
-            <Cell
-              key={`${rowIndex}=${colIndex}`}
-              alive={cell}
-              onClick={onCellClick(rowIndex, colIndex)}
-            />
-          )})
+              <Cell
+                key={`${rowIndex}=${colIndex}`}
+                alive={cell}
+                onClick={onCellClick(rowIndex, colIndex)}
+              />
+            )
+          })
         ))}
       </Styled.CultureInner>
     </Styled.Culture>

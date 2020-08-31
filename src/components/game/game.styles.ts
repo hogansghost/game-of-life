@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 
-export const GameSection = styled.div`
-  padding-top: 20px;
-  padding-bottom: 20px;
+export const Game = styled.div`
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: minmax(0px, 1fr);
+  grid-gap: 40px;
+  min-height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 40px;
+`;
 
-  &:nth-child(n+2) {
-      margin-top: 40px;
-  }
+export const GameSection = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0px, 1fr);
 `;
 
 export const GameControls = styled.div`
@@ -18,6 +25,10 @@ export const GameControls = styled.div`
   margin-right: auto;
   margin-left: auto;
   text-align: left;
+
+  @media screen and (min-width: 992px) {
+    width: 700px;
+  }
 `;
 
 export const GameInterval = styled.div`
@@ -32,27 +43,4 @@ export const GameIntervalLabel = styled.p`
   flex: 0 1 auto;
   min-width: 0;
   padding: 10px;
-`;
-
-export const GameIntervalInput = styled.input`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  flex: 1 1 auto;
-  min-width: 180px;
-  border: 1px solid rgba(0,0,0,0.3);
-  border-radius: 3px;
-  padding: 12px 16px;
-  font-size: 16px;
-  box-shadow: none;
-
-  @media screen and (min-width: 992px) {
-    padding: 8px 12px;
-  }
-
-  &:focus {
-    outline: 0;
-    box-shadow: 0px 0px 5px -1px #dd0d4d;
-    border-color: #dd0d4d;
-  }
 `;
